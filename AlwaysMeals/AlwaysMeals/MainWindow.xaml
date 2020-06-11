@@ -5,8 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlwaysMeals"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="Manual"
+        Left="0" Top="910"
+        Title="MainWindow" Height="130" Width="300">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="btnStyle">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" CornerRadius="5" Background="LightGray">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="tbMealsStyle">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
+                <Button Content="←" Margin="0 0 10 0"  
+                        Style="{StaticResource btnStyle}"
+                        Command="{Binding PrevDayCommand}"/>
+                <TextBlock Text="{Binding SelectedDate, StringFormat='MM월 dd일'}" 
+                           FontWeight="Bold" FontSize="15"
+                           VerticalAlignment="Center" />
+                <Button Content="→" Margin="10 0 0 0"
+                        Style="{StaticResource btnStyle}"
+                        Command="{Binding NextDayCommand}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Line X1="20" X2="280" Stroke="Black" StrokeThickness="1" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <ScrollViewer x:Name="svMeal" VerticalScrollBarVisibility="Hidden">
+                <StackPanel Height="270">
+                    <TextBlock Text="조식" FontWeight="Bold" Height="30" TextAlignment="Center" Visibility="{Binding TbVisibility}"/>
+                    <TextBlock Text="{Binding Breakfast}" Style="{StaticResource tbMealsStyle}"/>
+                    <TextBlock Text="중식" FontWeight="Bold" Height="30" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Lunch}" Style="{StaticResource tbMealsStyle}"/>
+                    <TextBlock Text="석식" FontWeight="Bold" Height="30" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Dinner}" Style="{StaticResource tbMealsStyle}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>
