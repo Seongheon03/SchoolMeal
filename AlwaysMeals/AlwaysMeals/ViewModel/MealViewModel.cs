@@ -98,17 +98,24 @@ namespace Meal_Parsing.ViewModel
             wc.Headers["Content-type"] = "application/json";
             wc.Encoding = Encoding.UTF8;
 
-            string html = wc.DownloadString(NeisMealApi);
+            try
+            {
+                string html = wc.DownloadString(NeisMealApi);
+                // HtmlAgilityPack 패키지
+                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(html);
 
-            // HtmlAgilityPack 패키지
-            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(html);
+                string json = doc.Text;
 
-            string json = doc.Text;
+                JObject todayMeal = JObject.Parse(json);
 
-            JObject todayMeal = JObject.Parse(json);
-
-            SetSelectedMeal(todayMeal);
+                SetSelectedMeal(todayMeal);
+            }
+            catch (WebException e)
+            {
+                MessageBox.Show("네트워크 연결을 확인해 주세요.");
+                System.Windows.Application.Current.Shutdown();
+            }
 
         }
 
