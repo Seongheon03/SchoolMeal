@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlwaysMeals"
+        xmlns:convert="clr-namespace:AlwaysMeals.Converter"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -12,6 +13,8 @@
         Left="0" Top="910"
         Title="MainWindow" Height="130" Width="300">
     <Window.Resources>
+        <convert:DatetimeToStringConverter x:Key="DatetimeToConverter"/>
+        
         <Style TargetType="Button" x:Key="btnStyle">
             <Setter Property="Height" Value="20"/>
             <Setter Property="Width" Value="20"/>
@@ -35,9 +38,10 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Height" Value="70"/>
+            <Setter Property="Height" Value="65"/>
             <Setter Property="Width" Value="270"/>
             <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
     <Grid>
@@ -52,7 +56,7 @@
                 <Button Content="←" Margin="0 0 10 0"  
                         Style="{StaticResource btnStyle}"
                         Command="{Binding PrevDayCommand}"/>
-                <TextBlock Text="{Binding SelectedDate, StringFormat='MM월 dd일'}" 
+                <TextBlock Text="{Binding SelectedDate, Converter={StaticResource DatetimeToConverter}}"
                            FontWeight="Bold" FontSize="15"
                            VerticalAlignment="Center" />
                 <Button Content="→" Margin="10 0 0 0"
