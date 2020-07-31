@@ -8,20 +8,19 @@
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
+        Icon="icon.ico"
         AllowsTransparency="True"
         WindowStartupLocation="Manual"
-        Left="0" Top="910"
-        Title="MainWindow" Height="130" Width="300">
+        Left="0" Top="690"
+        Title="MainWindow" Height="350" Width="300">
     <Window.Resources>
         <convert:DatetimeToStringConverter x:Key="DatetimeToConverter"/>
-        
+
         <Style TargetType="Button" x:Key="btnStyle">
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Width" Value="20"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" CornerRadius="5" Background="LightGray">
+                        <Border CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -46,22 +45,40 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
                 <Button Content="←" Margin="0 0 10 0"  
                         Style="{StaticResource btnStyle}"
-                        Command="{Binding PrevDayCommand}"/>
-                <TextBlock Text="{Binding SelectedDate, Converter={StaticResource DatetimeToConverter}}"
-                           FontWeight="Bold" FontSize="15"
-                           VerticalAlignment="Center" />
+                        Height="20" Width="20"
+                        Foreground="White"
+                        Command="{Binding PrevDayCommand}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Background" Value="#0067BC"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Content="{Binding SelectedDate, Converter={StaticResource DatetimeToConverter}}"
+                        FontWeight="Bold" FontSize="15"
+                        Style="{StaticResource btnStyle}"
+                        VerticalAlignment="Center"
+                        Command="{Binding TodayCommand}"/>
                 <Button Content="→" Margin="10 0 0 0"
                         Style="{StaticResource btnStyle}"
-                        Command="{Binding NextDayCommand}"/>
+                        Height="20" Width="20"
+                        Foreground="White"
+                        Command="{Binding NextDayCommand}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Background" Value="#0067BC"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </StackPanel>
         </Grid>
 
@@ -71,7 +88,7 @@
 
         <Grid Grid.Row="2">
             <ScrollViewer x:Name="svMeal" VerticalScrollBarVisibility="Hidden">
-                <StackPanel Height="270">
+                <StackPanel Height="260">
                     <TextBlock Text="조식" FontWeight="Bold" Height="30" TextAlignment="Center" Visibility="{Binding TbVisibility}"/>
                     <TextBlock Text="{Binding Breakfast}" Style="{StaticResource tbMealsStyle}"/>
                     <TextBlock Text="중식" FontWeight="Bold" Height="30" HorizontalAlignment="Center"/>

@@ -23,8 +23,8 @@ namespace Meal_Parsing.ViewModel
         const string SD_SCHUL_CODE = "7240393"; // 대구소프트웨어고등학교
         string NeisMealApi = "https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=" + ATPT_OFCDC_SC_CODE + "&SD_SCHUL_CODE=" + SD_SCHUL_CODE;
 
-        public delegate void ScrollViewerVisibilityHandler(object sender, bool isUsable);
-        public event ScrollViewerVisibilityHandler ScrollViewerVisibility;
+        //public delegate void ScrollViewerVisibilityHandler(object sender, bool isUsable);
+        //public event ScrollViewerVisibilityHandler ScrollViewerVisibility;
 
         #region Property
         private DateTime _selectedDate;
@@ -64,6 +64,7 @@ namespace Meal_Parsing.ViewModel
         #endregion
 
         #region Delegate
+        public DelegateCommand TodayCommand { get; set; }
         public DelegateCommand NextDayCommand { get; set; }
         public DelegateCommand PrevDayCommand { get; set; }
         #endregion
@@ -71,8 +72,15 @@ namespace Meal_Parsing.ViewModel
         public MealViewModel()
         {
             LoadMealData(DateTime.Now);
+            TodayCommand = new DelegateCommand(OnToday);
             NextDayCommand = new DelegateCommand(OnNextDay);
             PrevDayCommand = new DelegateCommand(OnPrevDay);
+        }
+
+        private void OnToday()
+        {
+            SelectedDate = DateTime.Now;
+            LoadMealData(SelectedDate);
         }
 
         private void OnNextDay()
@@ -121,12 +129,12 @@ namespace Meal_Parsing.ViewModel
 
         private void Initialize()
         {
-            Breakfast = "조식은 없습니다.";
-            Lunch = "중식은 없습니다.";
-            Dinner = "석식은 없습니다.";
+            Breakfast = "오늘 조식은 없습니다.";
+            Lunch = "오늘 중식은 없습니다.";
+            Dinner = "오늘 석식은 없습니다.";
 
-            TbVisibility = Visibility.Visible;
-            ScrollViewerVisibility?.Invoke(this, true);
+            //TbVisibility = Visibility.Visible;
+            //ScrollViewerVisibility?.Invoke(this, true);
         }
 
         private void setNEIS_MEAL_URL(DateTime date)
@@ -139,9 +147,11 @@ namespace Meal_Parsing.ViewModel
             if (jobj["mealServiceDietInfo"] == null)
             {
                 Breakfast = "오늘은 급식이 없습니다.";
+                Lunch = "오늘은 급식이 없습니다.";
+                Dinner = "오늘은 급식이 없습니다.";
 
-                TbVisibility = Visibility.Hidden;
-                ScrollViewerVisibility?.Invoke(this, false);
+                //TbVisibility = Visibility.Hidden;
+                //ScrollViewerVisibility?.Invoke(this, false);
 
                 return;
             }

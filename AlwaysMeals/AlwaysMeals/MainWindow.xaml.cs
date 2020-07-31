@@ -32,19 +32,19 @@ namespace AlwaysMeals
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = mealViewModel;
-            mealViewModel.ScrollViewerVisibility += MealViewModel_ScrollViewerVisibility;
+            //mealViewModel.ScrollViewerVisibility += MealViewModel_ScrollViewerVisibility;
         }
 
-        private void MealViewModel_ScrollViewerVisibility(object sender, bool isUsable)
-        {
-            if (isUsable)
-            {
-                svMeal.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
-            }
-            else
-            {
-                svMeal.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-            }
-        }
+        //private void MealViewModel_ScrollViewerVisibility(object sender, bool isUsable)
+        //{
+        //    if (isUsable)
+        //    {
+        //        svMeal.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+        //    }
+        //    else
+        //    {
+        //        svMeal.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+        //    }
+        //}
     }
 }
