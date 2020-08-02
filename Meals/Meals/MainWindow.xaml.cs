@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AlwaysMeals
+namespace Meals
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

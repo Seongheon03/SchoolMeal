@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace AlwaysMeals.Converter
+namespace Meals.Converter
 {
     public class DatetimeToStringConverter : IValueConverter
     {

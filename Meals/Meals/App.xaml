@@ -1,7 +1,7 @@
-﻿<Application x:Class="AlwaysMeals.App"
+﻿<Application x:Class="Meals.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AlwaysMeals"
+             xmlns:local="clr-namespace:Meals"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
