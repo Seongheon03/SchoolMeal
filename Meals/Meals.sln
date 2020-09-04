@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meals", "Meals\Meals.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.SchoolMeal", "Core.SchoolMeal\Core.SchoolMeal.csproj", "{F8092377-BBCE-4B07-9E55-83FD47A50892}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MealsSetup", "MealsSetup\MealsSetup.vdproj", "{D1114FC4-DE07-4172-B9C6-03AB4618276C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{F8092377-BBCE-4B07-9E55-83FD47A50892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8092377-BBCE-4B07-9E55-83FD47A50892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8092377-BBCE-4B07-9E55-83FD47A50892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1114FC4-DE07-4172-B9C6-03AB4618276C}.Debug|Any CPU.ActiveCfg = Debug
+		{D1114FC4-DE07-4172-B9C6-03AB4618276C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

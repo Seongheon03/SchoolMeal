@@ -15,7 +15,7 @@ namespace Meals.View
             SetContextMenu();
 
             notifyIcon.Icon = Properties.Resources.icon;
-            notifyIcon.Text = "School Meals";
+            notifyIcon.Text = "Meals";
             notifyIcon.ContextMenu = Menu;
             notifyIcon.Visible = true;
         }

@@ -88,11 +88,9 @@ namespace Meals.View
         //Temporary
         private void FillDisplay()
         {
-            var point = System.Windows.Forms.Cursor.Position;
-            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromPoint(point);
-            var area = screen.WorkingArea;
+            var area = SystemParameters.WorkArea;
 
-            this.Top = 730;
+            this.Top = area.Bottom - this.Height;
             this.Left = area.Left;
             this.Width = 300;
             this.Height = 310;
