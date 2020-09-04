@@ -1,12 +1,8 @@
-﻿using Meal_Parsing.Model.Data;
+﻿using Core.SchoolMeal.Model.Data;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Meal_Parsing.Model
+namespace Core.SchoolMeal.Model
 {
     class MealServiceDietInfo 
     {

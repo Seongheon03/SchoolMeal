@@ -2,8 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Meals"
-             StartupUri="MainWindow.xaml">
+             xmlns:cvts="clr-namespace:Meals.Converter"
+             StartupUri="/View/MainWindow.xaml">
     <Application.Resources>
-         
+        <cvts:DatetimeToStringConverter x:Key="DatetimeToString"/>
+        <cvts:ColorToBrushConverter x:Key="ColorToBrush"/>
+        <cvts:BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Application.Resources>
 </Application>
