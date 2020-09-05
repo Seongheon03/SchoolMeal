@@ -1,0 +1,38 @@
+﻿<Window x:Class="SchoolMeal.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolMeal"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Visibility="{Binding SettingViewModel.IsWindowVisible, Converter={StaticResource BooleanToVisibility}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        Foreground="{Binding SettingViewModel.FontColor, Converter={StaticResource ColorToBrush}}"
+        Height="320" Width="300">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="tbMealsStyle">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="65"/>
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="10" Background="{Binding SettingViewModel.BackgroundColor, Converter={StaticResource ColorToBrush}, Mode=TwoWay}">
+        <Grid>
+            <StackPanel Height="270" Margin="0 10 0 0">
+                <TextBlock Text="조식" FontWeight="Bold" Height="30" TextAlignment="Center"/>
+                <TextBlock Text="{Binding MealViewModel.TodayMeal.Breakfast}" Style="{StaticResource tbMealsStyle}"/>
+                <TextBlock Text="중식" FontWeight="Bold" Height="30" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding MealViewModel.TodayMeal.Lunch}" Style="{StaticResource tbMealsStyle}"/>
+                <TextBlock Text="석식" FontWeight="Bold" Height="30" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding MealViewModel.TodayMeal.Dinner}" Style="{StaticResource tbMealsStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
