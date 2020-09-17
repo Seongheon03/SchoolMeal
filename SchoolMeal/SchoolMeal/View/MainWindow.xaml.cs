@@ -1,4 +1,4 @@
-﻿using Core.SchoolMeal.ViewModel;
+﻿using Core.Meal.ViewModel;
 using SchoolMeal.ViewModel;
 using System;
 using System.Windows;
@@ -28,18 +28,20 @@ namespace SchoolMeal.View
         public MainWindow()
         {
             InitializeComponent();
-            InitWorkerW();
-            InitOnDisplaySettingChanged();
             Loaded += MainWindow_Loaded;
             Closed += MainWindow_Closed;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = this;
+            InitWorkerW();
+            InitOnDisplaySettingChanged();
             ShowOnWorkerW();
-            SetTraySystem();
             FillDisplay();
+
+            SetTraySystem();
+
+            DataContext = this;
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

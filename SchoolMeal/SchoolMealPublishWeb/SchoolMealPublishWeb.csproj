@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MealsPublishWeb</RootNamespace>
-    <AssemblyName>MealsPublishWeb</AssemblyName>
+    <RootNamespace>SchoolMealPublishWeb</RootNamespace>
+    <AssemblyName>SchoolMealPublishWeb</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -105,6 +105,32 @@
     <Content Include="publish\Application Files\SchoolMeal_1_0_0_0\Xceed.Wpf.Toolkit.dll.deploy" />
     <Content Include="publish\Application Files\SchoolMeal_1_0_0_0\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
     <Content Include="publish\SchoolMeal.application" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Core.SchoolMeal.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\de\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\es\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\fr\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\HtmlAgilityPack.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\hu\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\it\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Newtonsoft.Json.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Prism.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\pt-BR\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Resources\icon.ico.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\ro\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\ru\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\SchoolMeal.application" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\SchoolMeal.exe.config.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\SchoolMeal.exe.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\SchoolMeal.exe.manifest" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\sv\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\System.ValueTuple.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Xceed.Wpf.AvalonDock.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Xceed.Wpf.AvalonDock.Themes.Aero.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Xceed.Wpf.AvalonDock.Themes.Metro.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Xceed.Wpf.AvalonDock.Themes.VS2010.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\Xceed.Wpf.Toolkit.dll.deploy" />
+    <Content Include="publish\Application Files\SchoolMeal_1_0_0_1\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll.deploy" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

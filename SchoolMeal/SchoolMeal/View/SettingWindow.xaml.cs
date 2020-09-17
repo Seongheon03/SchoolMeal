@@ -1,4 +1,4 @@
-﻿using Core.SchoolMeal.ViewModel;
+﻿using Core.Meal.ViewModel;
 using SchoolMeal.Common;
 using SchoolMeal.ViewModel;
 using System;
@@ -36,6 +36,7 @@ namespace SchoolMeal.View
         private void SettingWindow_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = this;
+
             var desktopWorkingArea = SystemParameters.WorkArea;
             this.Left = desktopWorkingArea.Right - this.Width;
             this.Top = desktopWorkingArea.Bottom - this.Height;

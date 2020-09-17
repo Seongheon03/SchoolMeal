@@ -7,8 +7,8 @@
     <ProjectGuid>{F8092377-BBCE-4B07-9E55-83FD47A50892}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.SchoolMeal</RootNamespace>
-    <AssemblyName>Core.SchoolMeal</AssemblyName>
+    <RootNamespace>Core.Meal</RootNamespace>
+    <AssemblyName>Core.Meal</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -60,7 +60,7 @@
     <Compile Include="Model\Data\Head.cs" />
     <Compile Include="Model\Data\Result.cs" />
     <Compile Include="Model\Data\Row.cs" />
-    <Compile Include="Model\Meal.cs" />
+    <Compile Include="Model\Meals.cs" />
     <Compile Include="Model\MealServiceDietInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\MealService.cs" />

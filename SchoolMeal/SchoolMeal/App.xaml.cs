@@ -1,10 +1,11 @@
-﻿using Core.SchoolMeal;
-using Core.SchoolMeal.ViewModel;
+﻿using Core.Meal;
+using Core.Meal.ViewModel;
 using SchoolMeal.Common;
 using SchoolMeal.ViewModel;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Windows;
+using System.Reflection;
 
 namespace SchoolMeal
 {
@@ -14,7 +15,7 @@ namespace SchoolMeal
     public partial class App : Application
     {
         public static RegistryKey RunRegKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        public static string SystemName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name.ToString();
+        public static Assembly CurAssembly = Assembly.GetExecutingAssembly();
         public static MealViewModel MealViewModel;
         public static SettingViewModel SettingViewModel;
 
@@ -26,7 +27,7 @@ namespace SchoolMeal
 
         private void CheckIsAction()
         {
-            Process[] processList = Process.GetProcessesByName(SystemName);
+            Process[] processList = Process.GetProcessesByName(CurAssembly.GetName().Name);
 
             if (processList.Length >= 2)
             {

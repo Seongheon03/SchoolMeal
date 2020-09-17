@@ -1,11 +1,11 @@
-﻿using Core.SchoolMeal.Model;
+﻿using Core.Meal.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Core.SchoolMeal.Service
+namespace Core.Meal.Service
 {
     internal class MealService
     {
@@ -13,13 +13,12 @@ namespace Core.SchoolMeal.Service
         const string ATPT_OFCDC_SC_CODE = "D10"; // 대구광역시교육청
         // 표준학교코드
         const string SD_SCHUL_CODE = "7240393"; // 대구소프트웨어고등학교
-        string NeisMealApi = "https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=" + ATPT_OFCDC_SC_CODE + "&SD_SCHUL_CODE=" + SD_SCHUL_CODE;
+        private string NeisMealApi = "https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=" + ATPT_OFCDC_SC_CODE + "&SD_SCHUL_CODE=" + SD_SCHUL_CODE;
 
-        Meal Meals = new Meal();
-
-        internal Meal LoadMealData(DateTime date)
-        { 
-            InitMeals();
+        internal Meals LoadMealData(DateTime date)
+        {
+            Meals meals = new Meals();
+            InitMeals(meals);
 
             SetNEIS_MEAL_URL(date);
 
@@ -38,23 +37,23 @@ namespace Core.SchoolMeal.Service
 
                 JObject todayMeal = JObject.Parse(json);
 
-                SetSelectedMeal(todayMeal);
+                meals = SetSelectedMeal(todayMeal, meals);
             }
             catch
             {
-                Meals.Breakfast = "네트워크 연결을 확인해주세요.";
-                Meals.Lunch = "네트워크 연결을 확인해주세요.";
-                Meals.Dinner = "네트워크 연결을 확인해주세요.";
+                meals.Breakfast = "네트워크 연결을 확인해주세요.";
+                meals.Lunch = "네트워크 연결을 확인해주세요.";
+                meals.Dinner = "네트워크 연결을 확인해주세요.";
             }
 
-            return Meals;
+            return meals;
         }
 
-        private void InitMeals()
+        private void InitMeals(Meals meals)
         {
-            Meals.Breakfast = "오늘은 조식이 없습니다.";
-            Meals.Lunch = "오늘은 중식이 없습니다.";
-            Meals.Dinner = "오늘은 석식이 없습니다.";
+            meals.Breakfast = "오늘은 조식이 없습니다.";
+            meals.Lunch = "오늘은 중식이 없습니다.";
+            meals.Dinner = "오늘은 석식이 없습니다.";
         }
 
         private void SetNEIS_MEAL_URL(DateTime date)
@@ -62,15 +61,15 @@ namespace Core.SchoolMeal.Service
             NeisMealApi += "&MLSV_YMD=" + date.ToString("yyyyMMdd");
         }
 
-        private void SetSelectedMeal(JObject jobj)
+        private Meals SetSelectedMeal(JObject jobj, Meals meals)
         {
             if (jobj["mealServiceDietInfo"] == null)
             {
-                Meals.Breakfast = "오늘은 급식이 없습니다.";
-                Meals.Lunch = "오늘은 급식이 없습니다.";
-                Meals.Dinner = "오늘은 급식이 없습니다.";
+                meals.Breakfast = "오늘은 급식이 없습니다.";
+                meals.Lunch = "오늘은 급식이 없습니다.";
+                meals.Dinner = "오늘은 급식이 없습니다.";
 
-                return;
+                return meals;
             }
 
             for (int i = 0; i < Convert.ToInt32(jobj["mealServiceDietInfo"][0]["head"][0]["list_total_count"]); i++)
@@ -80,16 +79,18 @@ namespace Core.SchoolMeal.Service
                 switch (jobj["mealServiceDietInfo"][1]["row"][i]["MMEAL_SC_NM"].ToString())
                 {
                     case "조식":
-                        Meals.Breakfast = ParseString(selectedMeal);
+                        meals.Breakfast = ParseString(selectedMeal);
                         break;
                     case "중식":
-                        Meals.Lunch = ParseString(selectedMeal);
+                        meals.Lunch = ParseString(selectedMeal);
                         break;
                     case "석식":
-                        Meals.Dinner = ParseString(selectedMeal);
+                        meals.Dinner = ParseString(selectedMeal);
                         break;
                 }
             }
+
+            return meals;
         }
 
 

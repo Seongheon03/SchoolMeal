@@ -1,10 +1,10 @@
-﻿using Prism.Commands;
+﻿using Core.Meal.Model;
+using Core.Meal.Service;
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using Core.SchoolMeal.Model;
-using Core.SchoolMeal.Service;
 
-namespace Core.SchoolMeal.ViewModel
+namespace Core.Meal.ViewModel
 {
     public class MealViewModel : BindableBase
     {
@@ -21,8 +21,8 @@ namespace Core.SchoolMeal.ViewModel
             set => SetProperty(ref _selectedDate, value);
         }
 
-        private Meal _todayMeal;
-        public Meal TodayMeal
+        private Meals _todayMeal;
+        public Meals TodayMeal
         {
             get => _todayMeal;
             set => SetProperty(ref _todayMeal, value);

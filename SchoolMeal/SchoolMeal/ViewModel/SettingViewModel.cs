@@ -39,11 +39,11 @@ namespace SchoolMeal.ViewModel
 
                 if (IsStartingProgram)
                 {
-                    App.RunRegKey.SetValue(App.SystemName, Environment.CurrentDirectory + "\\" + AppDomain.CurrentDomain.FriendlyName);
+                    App.RunRegKey.SetValue(App.CurAssembly.GetName().Name, App.CurAssembly.Location);
                 }
                 else
                 {
-                    App.RunRegKey.SetValue(App.SystemName, false);
+                    App.RunRegKey.SetValue(App.CurAssembly.GetName().Name, false);
                 }
 
             }

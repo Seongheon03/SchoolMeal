@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Core.SchoolMeal.Model.Data
+namespace Core.Meal.Model.Data
 {
     class Row
     {

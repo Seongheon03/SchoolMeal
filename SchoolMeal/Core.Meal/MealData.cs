@@ -1,6 +1,6 @@
-﻿using Core.SchoolMeal.ViewModel;
+﻿using Core.Meal.ViewModel;
 
-namespace Core.SchoolMeal
+namespace Core.Meal
 {
     public class MealData
     {

@@ -1,8 +1,8 @@
-﻿using Core.SchoolMeal.Model.Data;
+﻿using Core.Meal.Model.Data;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Core.SchoolMeal.Model
+namespace Core.Meal.Model
 {
     class MealServiceDietInfo 
     {
