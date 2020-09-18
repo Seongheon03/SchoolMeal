@@ -57,11 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MealData.cs" />
-    <Compile Include="Model\Data\Head.cs" />
-    <Compile Include="Model\Data\Result.cs" />
-    <Compile Include="Model\Data\Row.cs" />
     <Compile Include="Model\Meals.cs" />
-    <Compile Include="Model\MealServiceDietInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\MealService.cs" />
     <Compile Include="ViewModel\MealViewModel.cs" />
