@@ -29,13 +29,8 @@ namespace Core.Meal.Service
             try
             {
                 string html = wc.DownloadString(NeisMealApi);
-                // HtmlAgilityPack 패키지
-                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(html);
 
-                string json = doc.Text;
-
-                JObject todayMeal = JObject.Parse(json);
+                JObject todayMeal = JObject.Parse(html);
 
                 meals = SetSelectedMeal(todayMeal, meals);
             }

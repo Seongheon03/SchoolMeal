@@ -10,9 +10,6 @@ namespace Core.Meal.ViewModel
     {
         private MealService mealService = new MealService();
 
-        //public delegate void ScrollViewerVisibilityHandler(object sender, bool isUsable);
-        //public event ScrollViewerVisibilityHandler ScrollViewerVisibility;
-
         #region Property
         private DateTime _selectedDate = DateTime.Now;
         public DateTime SelectedDate
