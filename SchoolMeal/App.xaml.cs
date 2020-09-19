@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.Windows;
 using System.Reflection;
+using Core.School.ViewModel;
 
 namespace SchoolMeal
 {
@@ -16,7 +17,8 @@ namespace SchoolMeal
     {
         public static RegistryKey RunRegKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         public static Assembly CurAssembly = Assembly.GetExecutingAssembly();
-        public static MealViewModel MealViewModel;
+        public static MealViewModel MealViewModel = new MealViewModel();
+        public static SchoolViewModel SchoolViewModel = new SchoolViewModel();
         public static SettingViewModel SettingViewModel;
 
         public App()
@@ -38,7 +40,6 @@ namespace SchoolMeal
         public static void InitSingleTon()
         {
             Setting.Load();
-            MealViewModel = new MealData().mealViewModel;
             SettingViewModel = new SettingViewModel();
         }
     }

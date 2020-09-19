@@ -225,6 +225,10 @@
       <Project>{F8092377-BBCE-4B07-9E55-83FD47A50892}</Project>
       <Name>Core.Meal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.School\Core.School.csproj">
+      <Project>{342D90D4-CE88-4267-B230-11DACD2B9326}</Project>
+      <Name>Core.School</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
