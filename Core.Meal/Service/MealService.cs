@@ -15,12 +15,12 @@ namespace Core.Meal.Service
         const string SD_SCHUL_CODE = "7240393"; // 대구소프트웨어고등학교
         private string NeisMealApi = "https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=" + ATPT_OFCDC_SC_CODE + "&SD_SCHUL_CODE=" + SD_SCHUL_CODE;
 
-        internal Meals LoadMealData(DateTime date)
+        internal Model.Meal LoadMealData(DateTime date)
         {
-            Meals meals = new Meals();
-            InitMeals(meals);
+            Model.Meal meal = new Model.Meal();
+            InitMeals(meal);
 
-            SetNEIS_MEAL_URL(date);
+            SetNeisMealApi(date);
 
             WebClient wc = new WebClient();
             wc.Headers["Content-type"] = "application/json";
@@ -28,35 +28,35 @@ namespace Core.Meal.Service
 
             try
             {
-                string html = wc.DownloadString(NeisMealApi);
+                string xml = wc.DownloadString(NeisMealApi);
 
-                JObject todayMeal = JObject.Parse(html);
+                JObject todayMeal = JObject.Parse(xml);
 
-                meals = SetSelectedMeal(todayMeal, meals);
+                meal = SetMeal(todayMeal, meal);
             }
             catch
             {
-                meals.Breakfast = "네트워크 연결을 확인해주세요.";
-                meals.Lunch = "네트워크 연결을 확인해주세요.";
-                meals.Dinner = "네트워크 연결을 확인해주세요.";
+                meal.Breakfast = "네트워크 연결을 확인해주세요.";
+                meal.Lunch = "네트워크 연결을 확인해주세요.";
+                meal.Dinner = "네트워크 연결을 확인해주세요.";
             }
 
-            return meals;
+            return meal;
         }
 
-        private void InitMeals(Meals meals)
+        private void InitMeals(Model.Meal meals)
         {
             meals.Breakfast = "오늘은 조식이 없습니다.";
             meals.Lunch = "오늘은 중식이 없습니다.";
             meals.Dinner = "오늘은 석식이 없습니다.";
         }
 
-        private void SetNEIS_MEAL_URL(DateTime date)
+        private void SetNeisMealApi(DateTime date)
         {
             NeisMealApi += "&MLSV_YMD=" + date.ToString("yyyyMMdd");
         }
 
-        private Meals SetSelectedMeal(JObject jobj, Meals meals)
+        private Model.Meal SetMeal(JObject jobj, Model.Meal meals)
         {
             if (jobj["mealServiceDietInfo"] == null)
             {

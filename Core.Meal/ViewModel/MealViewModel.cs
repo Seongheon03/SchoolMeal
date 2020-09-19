@@ -18,8 +18,8 @@ namespace Core.Meal.ViewModel
             set => SetProperty(ref _selectedDate, value);
         }
 
-        private Meals _todayMeal;
-        public Meals TodayMeal
+        private Model.Meal _todayMeal;
+        public Model.Meal TodayMeal
         {
             get => _todayMeal;
             set => SetProperty(ref _todayMeal, value);
@@ -58,7 +58,7 @@ namespace Core.Meal.ViewModel
             LoadMealData(SelectedDate);
         }
 
-        public void LoadMealData(DateTime date)
+        private void LoadMealData(DateTime date)
         {
             TodayMeal = mealService.LoadMealData(date);
         }

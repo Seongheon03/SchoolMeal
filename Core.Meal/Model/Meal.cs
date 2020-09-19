@@ -2,7 +2,7 @@
 
 namespace Core.Meal.Model
 {
-    public class Meals : BindableBase
+    public class Meal : BindableBase
     {
         private bool _isExist;
         public bool IsExist
