@@ -56,8 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MealData.cs" />
-    <Compile Include="Model\Meals.cs" />
+    <Compile Include="Model\Meal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\MealService.cs" />
     <Compile Include="ViewModel\MealViewModel.cs" />
