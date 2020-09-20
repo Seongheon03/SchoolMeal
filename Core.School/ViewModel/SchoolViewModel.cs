@@ -12,22 +12,22 @@ namespace Core.School.ViewModel
     {
         private SchoolService schoolService = new SchoolService();
 
-        private string _enteredSchool;
-        public string EnteredSchool
+        private string _enteredSchoolName;
+        public string EnteredSchoolName
         {
-            get => _enteredSchool;
+            get => _enteredSchoolName;
             set
             {
-                SetProperty(ref _enteredSchool, value);
+                SetProperty(ref _enteredSchoolName, value);
                 SetSelectedSchool();
             }
         }
 
-        private Model.School _selectedSchool;
-        public Model.School SelectedSchool
+        private List<Model.School> _enteredSchools;
+        public List<Model.School> EnteredSchools
         {
-            get => _selectedSchool;
-            set => SetProperty(ref _selectedSchool, value);
+            get => _enteredSchools;
+            set => SetProperty(ref _enteredSchools, value);
         }
 
         public delegate void LoadCompleteEventHandler(object sender, bool success);
@@ -36,7 +36,7 @@ namespace Core.School.ViewModel
         private void SetSelectedSchool()
         {
             CompleteAction?.Invoke(this, false);
-            schoolService.LoadSchoolsInfo(EnteredSchool);
+            EnteredSchools = schoolService.LoadSchoolsInfo(EnteredSchoolName);
             CompleteAction?.Invoke(this, true);
         }
     }
