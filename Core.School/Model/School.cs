@@ -10,19 +10,9 @@ namespace Core.School.Model
 {
     public class School : BindableBase
     {
-        private string _educationOfficeCode;
-        public string EducationOfficeCode
-        {
-            get => _educationOfficeCode;
-            set => SetProperty(ref _educationOfficeCode, value);
-        }
+        public string EducationOfficeCode { get; set; }
 
-        private string _schoolCode;
-        public string SchoolCode
-        {
-            get => _schoolCode;
-            set => SetProperty(ref _schoolCode, value);
-        }
+        public string SchoolCode { get; set; }
 
         private string _schoolName;
         public string SchoolName
@@ -31,11 +21,13 @@ namespace Core.School.Model
             set => SetProperty(ref _schoolName, value);
         }
 
-        private string _schoolAddress;
-        public string SchoolAddress
+        public string SchoolAddress { get; set; }
+
+        public School()
         {
-            get => _schoolAddress;
-            set => SetProperty(ref _schoolAddress, value);
+            SchoolName = "대구소프트웨어고등학교";
+            EducationOfficeCode = "D10";
+            SchoolCode = "7240393";
         }
     }
 }

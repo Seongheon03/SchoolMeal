@@ -10,13 +10,14 @@ namespace Core.School.Service
 {
     public class SchoolService
     {
-        private string NeisSchoolApi = "https://open.neis.go.kr/hub/schoolInfo?SCHUL_NM=";
+        private const string NEIS_SCHOOL_URL = "https://open.neis.go.kr/hub/schoolInfo?KEY=2ba290736ae3424aa5c5d2444b76dac3&SCHUL_NM=";
+        private string neisSchoolUrl;
 
         internal List<Model.School> LoadSchoolsInfo(string schoolName)
         {
             List<Model.School> schools = new List<Model.School>();
 
-            SetNeisSchoolApi(schoolName);
+            SetNeisSchoolUrl(schoolName);
 
             try
             {
@@ -24,7 +25,7 @@ namespace Core.School.Service
                 wc.Headers["Content-type"] = "application/json";
                 wc.Encoding = Encoding.UTF8;
 
-                string xml = wc.DownloadString(NeisSchoolApi);
+                string xml = wc.DownloadString(neisSchoolUrl);
 
                 JObject jObj = JObject.Parse(xml);
 
@@ -32,10 +33,15 @@ namespace Core.School.Service
             }
             catch
             {
-                // TODO : 네트워크 오류 처리
+                return null;
             }
 
-            return schools;
+           return schools;
+        }
+
+        private void SetNeisSchoolUrl(string schoolName)
+        {
+            neisSchoolUrl = NEIS_SCHOOL_URL + schoolName;
         }
 
         private List<Model.School> SetSchools(JObject jObj, List<Model.School> schools)
@@ -46,26 +52,21 @@ namespace Core.School.Service
             }
 
             int dataCount = Convert.ToInt32(jObj["schoolInfo"][0]["head"][0]["list_total_count"]);
-            int length = (dataCount > 5) ? 5 : dataCount;
+            int length = (dataCount > 100) ? 100 : dataCount;
 
             for (int i = 0; i < length; i++)
             {
                 Model.School school = new Model.School();
 
-                school.EducationOfficeCode = jObj["mealServiceDietInfo"][1]["row"][i]["ATPT_OFCDC_SC_CODE"].ToString();
-                school.SchoolCode = jObj["mealServiceDietInfo"][1]["row"][i]["SD_SCHUL_CODE"].ToString();
-                school.SchoolName = jObj["mealServiceDietInfo"][1]["row"][i]["SCHUL_NM"].ToString();
-                school.SchoolAddress = jObj["mealServiceDietInfo"][1]["row"][i]["ORG_RDNMA"].ToString();
+                school.EducationOfficeCode = jObj["schoolInfo"][1]["row"][i]["ATPT_OFCDC_SC_CODE"].ToString();
+                school.SchoolCode = jObj["schoolInfo"][1]["row"][i]["SD_SCHUL_CODE"].ToString();
+                school.SchoolName = jObj["schoolInfo"][1]["row"][i]["SCHUL_NM"].ToString();
+                school.SchoolAddress = jObj["schoolInfo"][1]["row"][i]["ORG_RDNMA"].ToString();
 
                 schools.Add(school);
             }
 
             return schools;
-        }
-
-        private void SetNeisSchoolApi(string schoolName)
-        {
-            NeisSchoolApi += schoolName;
         }
     }
 }
