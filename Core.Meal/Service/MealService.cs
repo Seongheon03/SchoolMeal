@@ -1,5 +1,4 @@
-﻿using Core.Meal.Model;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Net;
 using System.Text;
@@ -9,11 +8,12 @@ namespace Core.Meal.Service
 {
     internal class MealService
     {
-        // 시도교육청코드
-        const string ATPT_OFCDC_SC_CODE = "D10"; // 대구광역시교육청
-        // 표준학교코드
-        const string SD_SCHUL_CODE = "7240393"; // 대구소프트웨어고등학교
-        private string NeisMealApi = "https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=" + ATPT_OFCDC_SC_CODE + "&SD_SCHUL_CODE=" + SD_SCHUL_CODE;
+        private string NeisMealApi;
+
+        public void SetBasicNeisMealApi(string educationCode, string schoolCode)
+        {
+            NeisMealApi = "https://open.neis.go.kr/hub/mealServiceDietInfo?ATPT_OFCDC_SC_CODE=" + educationCode + "&SD_SCHUL_CODE=" + schoolCode;
+        }
 
         internal Model.Meal LoadMealData(DateTime date)
         {
@@ -91,9 +91,9 @@ namespace Core.Meal.Service
 
         private string ParseString(string str)
         {
-            str = Regex.Replace(str, @"\d", "");
+            str = Regex.Replace(str, @"[a-zA-Z0-9]", "");
             str = str.Replace(".", "");
-            str = str.Replace("<br/>", ", ");
+            str = str.Replace("</>", ", ");
 
             while (str.Contains("("))
             {

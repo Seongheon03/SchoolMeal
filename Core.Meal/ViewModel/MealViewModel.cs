@@ -1,5 +1,4 @@
-﻿using Core.Meal.Model;
-using Core.Meal.Service;
+﻿using Core.Meal.Service;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -34,7 +33,6 @@ namespace Core.Meal.ViewModel
 
         public MealViewModel()
         {
-            LoadMealData(SelectedDate);
             PrevDayCommand = new DelegateCommand(OnPrevDay);
             TodayCommand = new DelegateCommand(OnToday);
             NextDayCommand = new DelegateCommand(OnNextDay);
@@ -58,9 +56,15 @@ namespace Core.Meal.ViewModel
             LoadMealData(SelectedDate);
         }
 
-        private void LoadMealData(DateTime date)
+        public void LoadMealData(DateTime date)
         {
             TodayMeal = mealService.LoadMealData(date);
+        }
+
+        public void InitMealData(string educationOfficeCode, string schoolCode)
+        {
+            mealService.SetBasicNeisMealApi(educationOfficeCode, schoolCode);
+            LoadMealData(SelectedDate);
         }
     }
 }

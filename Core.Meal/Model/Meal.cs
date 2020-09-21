@@ -4,13 +4,6 @@ namespace Core.Meal.Model
 {
     public class Meal : BindableBase
     {
-        private bool _isExist;
-        public bool IsExist
-        {
-            get => _isExist;
-            set => SetProperty(ref _isExist, value);
-        }
-
         private string _breakfast;
         public string Breakfast
         {
