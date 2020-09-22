@@ -1,5 +1,4 @@
-﻿using Core.Meal.ViewModel;
-using SchoolMeal.ViewModel;
+﻿using SchoolMeal.Properties;
 using System;
 using System.Windows;
 
@@ -10,21 +9,6 @@ namespace SchoolMeal.View
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private MealViewModel _mealViewModel = App.MealViewModel;
-        public MealViewModel MealViewModel
-        {
-            get => _mealViewModel;
-            set => _mealViewModel = value;
-        }
-
-        private SettingViewModel _settingViewModel = App.SettingViewModel;
-        public SettingViewModel SettingViewModel
-        {
-            get => _settingViewModel;
-            set => _settingViewModel = value;
-        }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -34,14 +18,19 @@ namespace SchoolMeal.View
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            SettingWidget();
+            SetTraySystem();
+
+            DataContext = App.mealViewModel;
+            App.mealViewModel.InitMealData(Settings.Default.currentSchool.EducationOfficeCode, Settings.Default.currentSchool.SchoolCode);
+        }
+
+        private void SettingWidget()
+        {
             InitWorkerW();
             InitOnDisplaySettingChanged();
             ShowOnWorkerW();
             FillDisplay();
-
-            SetTraySystem();
-
-            DataContext = this;
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

@@ -39,8 +39,7 @@ namespace SchoolMeal.View
 
         private void SettingItem_Click(object sender, EventArgs e)
         {
-            SettingWindow window = new SettingWindow();
-            window.Show();
+            new SettingWindow().Show();
         }
 
         private void ExitItem_Click(object sender, EventArgs e)

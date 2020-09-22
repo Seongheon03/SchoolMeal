@@ -48,9 +48,9 @@ namespace SchoolMeal.View
             W32.EnumWindows(new W32.EnumWindowsProc((tophandle, topparamhandle) =>
             {
                 var p = W32.FindWindowEx(tophandle,
-                                            IntPtr.Zero,
-                                            "SHELLDLL_DefView",
-                                            IntPtr.Zero);
+                                         IntPtr.Zero,
+                                         "SHELLDLL_DefView",
+                                         IntPtr.Zero);
 
                 if (p != IntPtr.Zero)
                 {
@@ -59,9 +59,9 @@ namespace SchoolMeal.View
 
                     // Gets the WorkerW Window after the current one.
                     _workerw = W32.FindWindowEx(IntPtr.Zero,
-                                               tophandle,
-                                               "WorkerW",
-                                               IntPtr.Zero);
+                                                tophandle,
+                                                "WorkerW",
+                                                IntPtr.Zero);
                 }
 
                 return true;

@@ -4,24 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolMeal"
-        xmlns:ctrl="clr-namespace:SchoolMeal.Control"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:ctrl="clr-namespace:SchoolMeal.Control.Setting"
         WindowStartupLocation="Manual"
         Icon="/Resources/setting.png"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Height="350" Width="300">
+        Height="460" Width="345">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="btnStyle">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+        <Style TargetType="Button" x:Key="btnNavi">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="35"/>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center"/>
-                        </Border>
+                        <ContentPresenter HorizontalAlignment="Center"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
@@ -31,80 +29,47 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="TextBlock" x:Key="Title">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-
-        <Style TargetType="TextBlock" x:Key="Content">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Width" Value="80"/>
-        </Style>
-
-        <Style TargetType="StackPanel">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="0 10 0 0"/>
-        </Style>
     </Window.Resources>
-
     <Grid>
-        <StackPanel Margin="15 0 0 0">
-            <StackPanel>
-                <TextBlock Text="사용자 지정" Style="{StaticResource Title}"/>
-                <StackPanel Orientation="Horizontal" Height="15">
-                    <Button Content="&#60;" Command="{Binding MealViewModel.PrevDayCommand}" Style="{StaticResource btnStyle}"
-                            Width="15" FontSize="10">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="Background" Value="LightGray"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button Content="{Binding MealViewModel.SelectedDate, Converter={StaticResource DatetimeToString}}" FontSize="12"
-                            Command="{Binding MealViewModel.TodayCommand}" Style="{StaticResource btnStyle}" Margin="20 0 20 0"/>
-                    <Button Content="&#62;" Command="{Binding MealViewModel.NextDayCommand}" Style="{StaticResource btnStyle}"
-                            Width="15" FontSize="10">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="Background" Value="LightGray"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="배경화면" Style="{StaticResource Content}"/>
-                    <xctk:ColorPicker x:Name="cpBackgroundColor" 
-                                      SelectedColor="{Binding SettingViewModel.BackgroundColor}"
-                                      DisplayColorAndName="True"
-                                      Height="22" Width="150"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="글자" Style="{StaticResource Content}"/>
-                    <xctk:ColorPicker x:Name="cpFontColor"
-                                      SelectedColor="{Binding SettingViewModel.FontColor}"
-                                      DisplayColorAndName="True" 
-                                      Height="22" Width="150" />
-                </StackPanel>
-            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <Line X1="0" X2="260" Y1="15" Y2="15" Stroke="LightGray"/>
+        <Grid Grid.Column="0">
+            <ListBox x:Name="lbNavi" ItemsSource="{Binding NaviItems}"
+                     BorderThickness="0" Background="#EEEEEE"
+                     SelectionChanged="lbNavi_SelectionChanged">
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding ImagePath}" Width="30" Margin="0 15 0 0"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
 
-            <StackPanel>
-                <TextBlock Text="View" Style="{StaticResource Title}"/>
-                <ctrl:ToggleButtonControl Status="{Binding SettingViewModel.IsWindowVisible, Mode=TwoWay}" 
-                                           Width="50"/>
-            </StackPanel>
-
-            <Line X1="0" X2="260" Y1="15" Y2="15" Stroke="LightGray"/>
-
-            <StackPanel>
-                <TextBlock Text="시작 프로그램 설정" Style="{StaticResource Title}"/>
-                <ctrl:ToggleButtonControl x:Name="tbtnStartingProgram" Status="{Binding SettingViewModel.IsStartingProgram, Mode=TwoWay}"
-                                           Width="50" HorizontalAlignment="Left"/>
-            </StackPanel>
-        </StackPanel>
+        <Grid Grid.Column="1" Width="240" Margin="0 15 0 0">
+            <ctrl:SettingHomeControl x:Name="ctrlSettingHome"/>
+            <ctrl:SettingSchoolControl x:Name="ctrlSettingSchool" Visibility="Collapsed"/>
+        </Grid>
     </Grid>
 </Window>

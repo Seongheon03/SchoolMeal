@@ -1,12 +1,10 @@
-﻿using Core.Meal;
-using Core.Meal.ViewModel;
-using SchoolMeal.Common;
-using SchoolMeal.ViewModel;
+﻿using Core.Meal.ViewModel;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Windows;
 using System.Reflection;
 using Core.School.ViewModel;
+using SchoolMeal.Properties;
 
 namespace SchoolMeal
 {
@@ -15,21 +13,20 @@ namespace SchoolMeal
     /// </summary>
     public partial class App : Application
     {
-        public static RegistryKey RunRegKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        public static Assembly CurAssembly = Assembly.GetExecutingAssembly();
-        public static MealViewModel MealViewModel = new MealViewModel();
-        public static SchoolViewModel SchoolViewModel = new SchoolViewModel();
-        public static SettingViewModel SettingViewModel;
+        public static RegistryKey runRegKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        public static Assembly curAssembly = Assembly.GetExecutingAssembly();
+        public static MealViewModel mealViewModel = new MealViewModel();
+        public static SchoolViewModel schoolViewModel = new SchoolViewModel();
 
         public App()
         {
             CheckIsAction();
-            InitSingleTon();
+            Initialize();
         }
 
         private void CheckIsAction()
         {
-            Process[] processList = Process.GetProcessesByName(CurAssembly.GetName().Name);
+            Process[] processList = Process.GetProcessesByName(curAssembly.GetName().Name);
 
             if (processList.Length >= 2)
             {
@@ -37,10 +34,14 @@ namespace SchoolMeal
             }
         }
 
-        public static void InitSingleTon()
+        public static void Initialize()
         {
-            Setting.Load();
-            SettingViewModel = new SettingViewModel();
+            Settings.Default.isWindowVisible = true;
+
+            if (Settings.Default.currentSchool == null)
+            {
+                Settings.Default.currentSchool = new Core.School.Model.School();
+            }
         }
     }
 }

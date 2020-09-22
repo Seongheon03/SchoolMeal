@@ -25,6 +25,42 @@ namespace SchoolMeal.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#00FFFFFF")]
+        public string backgroundColor {
+            get {
+                return ((string)(this["backgroundColor"]));
+            }
+            set {
+                this["backgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFFFFF")]
+        public string fontColor {
+            get {
+                return ((string)(this["fontColor"]));
+            }
+            set {
+                this["fontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool isWindowVisible {
+            get {
+                return ((bool)(this["isWindowVisible"]));
+            }
+            set {
+                this["isWindowVisible"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool isStartingProgram {
             get {
@@ -37,25 +73,12 @@ namespace SchoolMeal.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
-        public global::System.Drawing.Color backgroundColor {
+        public global::Core.School.Model.School currentSchool {
             get {
-                return ((global::System.Drawing.Color)(this["backgroundColor"]));
+                return ((global::Core.School.Model.School)(this["currentSchool"]));
             }
             set {
-                this["backgroundColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
-        public global::System.Drawing.Color fontColor {
-            get {
-                return ((global::System.Drawing.Color)(this["fontColor"]));
-            }
-            set {
-                this["fontColor"] = value;
+                this["currentSchool"] = value;
             }
         }
     }
