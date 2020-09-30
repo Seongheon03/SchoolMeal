@@ -80,25 +80,21 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
-                                        <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                                BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                                Background="{TemplateBinding Panel.Background}"
-                                                Name="Bd"
-                                                CornerRadius="5"
-                                                SnapsToDevicePixels="True">
+                                        <Border Name="border"
+                                                BorderThickness="1"
+                                                CornerRadius="5">
                                             <ContentPresenter ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
-                                            <Trigger Property="Selector.IsSelected" Value="True">
-                                                <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
-                                                <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="BorderBrush" TargetName="border">
                                                     <Setter.Value>
                                                         <SolidColorBrush>#DDDDDD</SolidColorBrush>
                                                     </Setter.Value>
                                                 </Setter>
                                             </Trigger>
-                                            <Trigger Property="UIElement.IsMouseOver" Value="True">
-                                                <Setter Property="Panel.Background" TargetName="Bd" Value="LightGray"/>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" TargetName="border" Value="LightGray"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
